@@ -1,0 +1,28 @@
+.nav{
+    background-color: aquamarine;
+    padding: 10px;
+}
+.nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+}
+.row{
+    display: flex;
+    justify-content: center;
+}
+.col-8{
+    width: 70%;
+    display: flex;
+    margin-top: 20px;
+}
+.col-3{
+    width: 70%;
+}
+.profile-img{
+    width: 250px;
+    height: 300px;
+}
+.col-5{
+    width: 70%;
+}
