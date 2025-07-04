@@ -1,18 +1,7 @@
 import React from 'react'
 import PortfolioImage from './assets/images/profile-pic.png'
 
-function Hero() {
-
-    let name = 'Elon Musk'
-
-    let designation = 'Python Django Developer'
-
-    let summary = `I am a passionate Python Django developer with a strong foundation in backend development
-                    and a keen interest in building scalable, secure, and efficient web applications. With hands-on experience
-                    in Django, RESTful APIs, MySQL/PostgreSQL, and user authentication using JWT and OAuth,
-                    I have developed and deployed full-stack web applications from scratch.
-                    My projects often involve integrating third-party APIs, handling complex database queries, 
-                    and managing data securely using Django's ORM.`
+function Hero({name,designation,summary}) {
 
   return (
     <div className='row'>
