@@ -20,7 +20,7 @@ function Bmi() {
         <label class="form-label mt-2" htmlFor='weight'>Weight : </label>
         <input onChange={(event)=>changeWeight(event.target.value)} value={weight} class="form-control" placeholder="enter your weight in kg" type="text" />
 
-        <button onClick={()=>changeResult(weight/((height/100)**2))} class="btn btn-primary mt-3">Calculate</button>
+        <button onClick={()=>changeResult(((weight/(height/100)**2)).toFixed(2))} class="btn btn-primary mt-3">Calculate</button>
 
     </div>
   )

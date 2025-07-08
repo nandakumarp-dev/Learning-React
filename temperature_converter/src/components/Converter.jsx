@@ -6,12 +6,16 @@ import {
 const units = ['Celsius', 'Fahrenheit', 'Kelvin'];
 
 const convertTemperature = (value, from, to) => {
-  if (isNaN(value) || !from || !to) return '';
-  let temp = parseFloat(value);
+  const num = Number(value);
+  if (!value || isNaN(num) || !from || !to) return '';
 
+  let temp = num;
+
+  // Convert to Celsius
   if (from === 'Fahrenheit') temp = (temp - 32) * 5 / 9;
   if (from === 'Kelvin') temp = temp - 273.15;
 
+  // Convert from Celsius to target
   if (to === 'Fahrenheit') return (temp * 9 / 5 + 32).toFixed(2);
   if (to === 'Kelvin') return (temp + 273.15).toFixed(2);
   return temp.toFixed(2);
