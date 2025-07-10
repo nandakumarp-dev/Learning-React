@@ -8,6 +8,7 @@ import Header from './Header';
 import Home from './Home';
 import Products from './Products';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Recipes from './Recipes';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path="bmi/" element={<Bmi/>}></Route>
         <Route path="" element={<Home/>}></Route>
         <Route path="products/" element={<Products/>}></Route>
+        <Route path="recipes/" element={<Recipes/>}></Route>
+        
 
       </Routes>
     </BrowserRouter>

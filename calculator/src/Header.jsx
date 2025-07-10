@@ -22,7 +22,10 @@ function Header() {
             <a class="nav-link"><Link class="nav-link" to={"/bmi/"}>BMI</Link></a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" aria-current="page"> <Link class="nav-link" to={"/products"}>Products</Link></a>
+            <a class="nav-link" aria-current="page"> <Link class="nav-link" to={"/products/"}>Products</Link></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" aria-current="page"> <Link class="nav-link" to={"/recipes/"}>Recipes</Link></a>
             </li>
         </ul>
         </div>
