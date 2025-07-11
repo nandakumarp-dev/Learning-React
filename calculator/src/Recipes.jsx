@@ -15,7 +15,7 @@ function Recipes() {
     event.preventDefault()
 
 
-    let headers = {'X-Api-Key':'3Zqjhhk5A+R8c4SN/oPi6w==mlu7lXXgqWOPV265'}
+    let headers = {}
 
     let response = await axios.get(`https://api.api-ninjas.com/v1/recipe?query=${query}`,{headers})
 
