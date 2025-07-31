@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+
+const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY'; // Replace with your key
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [city, setCity] = useState('');
+  const [weather, setWeather] = useState(null);
+
+  const getWeather = async () => {
+    if (!city) return;
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+    );
+    const data = await res.json();
+    if (data.cod === 200) {
+      setWeather(data);
+    } else {
+      alert('City not found!');
+      setWeather(null);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <h1 className="title">🌈 Weatherly</h1>
+
+      <div className="search-box glass">
+        <input
+          type="text"
+          placeholder="Enter city..."
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <button onClick={getWeather}>🔍</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {weather && (
+        <div className="weather-box glass">
+          <h2>{weather.name}, {weather.sys.country}</h2>
+          <img
+            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+            alt="icon"
+          />
+          <h1>{Math.round(weather.main.temp)}°C</h1>
+          <p>{weather.weather[0].description}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
