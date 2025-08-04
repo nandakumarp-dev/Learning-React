@@ -16,35 +16,51 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>📚 Book Finder</h1>
-      <div className="search-box">
+    <div className="app-container">
+      <header>
+        <h1>📚 Book Explorer</h1>
+        <p>Discover books from Google Books API</p>
+      </header>
+
+      <div className="search-section">
         <input
           type="text"
-          placeholder="Enter book name..."
+          placeholder="Search for a book, author, or topic..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={searchBooks}>Search</button>
+        <button onClick={searchBooks}>🔍 Search</button>
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <p className="loading">Loading books...</p>
       ) : (
         <div className="book-grid">
-          {books.map((book) => {
-            const info = book.volumeInfo;
-            return (
-              <div className="book-card" key={book.id}>
-                <img
-                  src={info.imageLinks?.thumbnail || 'https://via.placeholder.com/150'}
-                  alt={info.title}
-                />
-                <h3>{info.title}</h3>
-                <p>{info.authors?.join(', ')}</p>
-              </div>
-            );
-          })}
+          {books.length === 0 ? (
+            <p className="no-results">No books found. Try another search!</p>
+          ) : (
+            books.map((book) => {
+              const info = book.volumeInfo;
+              return (
+                <div className="book-card" key={book.id}>
+                  <img
+                    src={info.imageLinks?.thumbnail || 'https://via.placeholder.com/150'}
+                    alt={info.title}
+                  />
+                  <div className="book-info">
+                    <h3>{info.title}</h3>
+                    <p>{info.authors?.join(', ')}</p>
+                    <p><small>{info.publishedDate}</small></p>
+                    {info.previewLink && (
+                      <a href={info.previewLink} target="_blank" rel="noreferrer">
+                        Preview Book
+                      </a>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
       )}
     </div>
